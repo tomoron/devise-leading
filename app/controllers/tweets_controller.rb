@@ -20,6 +20,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1/edit
   def edit
+    respond_with @tweet
   end
 
   # POST /tweets or /tweets.json
@@ -27,30 +28,12 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.save
     respond_with @tweet, location: tweets_url
-    # respond_to do |format|
-    #   if @tweet.save
-    #     format.html { redirect_to tweet_url(@tweet), notice: "Tweet was successfully created." }
-    #     format.json { render :show, status: :created, location: @tweet }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @tweet.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /tweets/1 or /tweets/1.json
   def update
     @tweet.update(tweet_params)
     respond_with @tweet, location: tweets_url
-    # respond_to do |format|
-    #   if @tweet.update(tweet_params)
-    #     format.html { redirect_to tweet_url(@tweet), notice: "Tweet was successfully updated." }
-    #     format.json { render :show, status: :ok, location: @tweet }
-    #   else
-    #     format.html { render :edit, status: :unprocessable_entity }
-    #     format.json { render json: @tweet.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # DELETE /tweets/1 or /tweets/1.json
@@ -58,10 +41,6 @@ class TweetsController < ApplicationController
     @tweet.destroy
 
     respond_with @tweet, location: tweets_url
-    # respond_to do |format|
-    #   format.html { redirect_to tweets_url, notice: "Tweet was successfully destroyed." }
-    #   format.json { head :no_content }
-    # end
   end
 
   private
